@@ -1,0 +1,28 @@
+/* Gerando tabela DAX manual ---------------------------------------------------------------------------
+Esse código permite criar uma tabela de forma manual diretamente no modelo de dados do Power BI. */
+
+Tabela Manual = 
+DATATABLE(
+    "NOME",STRING,
+    "SOBRENOME",STRING,
+    {
+        {"Samuel","Postigo"},
+        {"Jesse","Pinkman"}
+    }
+)
+
+/* Filtrando com RELATED --------------------------------------------------------------------------------
+Usei SUMMARIZE mas poderia ser CALCULATETABLE ou uma tabela física. */
+
+Qtd Revendas por Fabrica Inativa = 
+VAR x = 
+SUMMARIZE(
+    FILTER(
+		Listao,
+		RELATED(dVendor[STATUS]) = "INATIVO"
+	),
+	Listao[FABRICA2],
+	"reseller qty",
+	[Reseller Qty]
+)
+RETURN x
