@@ -1,2 +1,2 @@
 # DAX-Support
-Repositorio para storage de funcoes DAX.
+Repositorio para guardar snippets de códigos simples de diversas linguagens.
