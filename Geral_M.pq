@@ -19,3 +19,15 @@ AdicionarDiasUteis = Table.AddColumn(Source, "DiasUteis", each
 // Extrai só numeros de uma string com texto -----------------------------------------------------------------------------
 
 ExtrairNumeros= Table.AddColumn(dProjeto_Table, "Vlr BRL", each Text.Select([Txt BRL],{"0".."9", "."}))
+
+// Cria funcao para listagem de nomes de colunas como tabela -------------------------------------------------------------
+
+    let
+        ListarColunas = (texto) =>
+            let
+                tabela = Table.ColumnNames(texto),
+                converterLista = Table.FromList(tabela, Splitter.SplitByNothing(), null, null, ExtraValues.Error)
+            in
+                converterLista
+    in
+        ListarColunas
